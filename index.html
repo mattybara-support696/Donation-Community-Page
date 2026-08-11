@@ -12,16 +12,17 @@
         }
         .blockchain-bg { background: linear-gradient(-45deg, #020617, #0284c7, #1e1b4b, #dc2626, #090d16); background-size: 400% 400%; animation: blockchainPulse 12s ease infinite; }
         .qr-wrapper img { margin: 0 auto; padding: 5px; background: white; border-radius: 8px; }
+        /* Forza la rimozione dello sfondo nero dalle immagini */
+        .img-no-bg { mix-blend-mode: screen !important; }
     </style>
 </head>
 <body class="blockchain-bg text-slate-100 font-sans antialiased py-10 px-4 min-h-screen">
 
     <div class="max-w-md mx-auto space-y-8">
         <div class="text-center space-y-4">
-            <!-- Logo autenticità con sfondo trasparente/sfumato -->
-            <img src="logo-autenticita.png" alt="Logo" class="w-32 h-32 mx-auto mix-blend-screen drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+            <img src="logo-autenticita.png" alt="Logo" class="w-32 h-32 mx-auto img-no-bg drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
             <h1 class="text-2xl font-black text-white tracking-tight">Supporta il progetto futuristico! ⚡</h1>
-            <p class="text-sm text-cyan-200/90 font-medium leading-relaxed">Scegli la crypto e la rete corretta. Zero intermediari, totale trasparenza on-chain.</p>
+            <p class="text-sm text-cyan-200/90 font-medium leading-relaxed">Scegli la crypto e la rete corretta.</p>
         </div>
 
         <div id="crypto-list" class="space-y-6"></div>
@@ -32,8 +33,9 @@
         </div>
 
         <div class="text-center pt-8 space-y-6">
-            <!-- Firma ingrandita e senza sfondo -->
-            <img src="signature.png" alt="Firma" class="h-28 md:h-32 mx-auto filter invert opacity-100 mix-blend-screen drop-shadow-md">
+            <!-- SIGNATURE INGRANDITA 5X -->
+            <img src="signature.png" alt="Firma" class="h-64 mx-auto img-no-bg filter invert opacity-100 drop-shadow-md">
+            
             <div class="border-t border-cyan-500/20 pt-6 space-y-4">
                 <p class="text-xs text-slate-500">MattYbarA Community © 2026 — Tutti i diritti riservati.</p>
                 <div class="bg-black/40 p-4 rounded-lg border border-red-900/30">
@@ -68,11 +70,10 @@
             CRYPTO_DATA.forEach(c => {
                 const div = document.createElement('div');
                 div.className = "bg-slate-900/60 p-5 rounded-2xl border border-cyan-500/30 backdrop-blur-md";
-                const paymentLink = `${c.uri}:${c.address}`; 
                 
                 div.innerHTML = `
                     <div class="flex items-center gap-3 mb-4">
-                        <img src="${c.icon}" class="w-8 h-8 mix-blend-screen" alt="${c.name}">
+                        <img src="${c.icon}" class="w-8 h-8 img-no-bg" alt="${c.name}">
                         <span class="font-bold text-lg text-white">${c.name}</span>
                     </div>
                     <div id="qr-${c.id}" class="qr-wrapper mb-4"></div>
@@ -81,7 +82,7 @@
                             <span id="addr-${c.id}" class="text-[10px] font-mono truncate mr-2 flex-1">${c.address}</span>
                             <button onclick="copiaTesto('addr-${c.id}', this)" class="bg-cyan-700 px-3 py-1 text-xs rounded font-bold hover:bg-cyan-600 transition">Copia 📋</button>
                         </div>
-                        <a href="${paymentLink}" class="text-center bg-red-700/80 hover:bg-red-600 transition p-2 rounded-lg text-xs font-bold uppercase tracking-wider">Apri Wallet / Invia Donazione</a>
+                        <button onclick="tentativaWallet('${c.uri}:${c.address}', '${c.address}')" class="text-center bg-red-700/80 hover:bg-red-600 transition p-2 rounded-lg text-xs font-bold uppercase tracking-wider">Apri Wallet / Invia Donazione</button>
                     </div>
                 `;
                 container.appendChild(div);
@@ -91,24 +92,35 @@
             const socCont = document.getElementById('social-container');
             socCont.innerHTML = `
                 <div class="grid grid-cols-2 gap-4 mb-4">
-                    <a href="${SOCIAL_DATA[0].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[0].icon}" class="w-5 h-5 mix-blend-screen"> ${SOCIAL_DATA[0].name}</a>
-                    <a href="${SOCIAL_DATA[1].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[1].icon}" class="w-5 h-5 mix-blend-screen"> ${SOCIAL_DATA[1].name}</a>
+                    <a href="${SOCIAL_DATA[0].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[0].icon}" class="w-5 h-5 img-no-bg"> ${SOCIAL_DATA[0].name}</a>
+                    <a href="${SOCIAL_DATA[1].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[1].icon}" class="w-5 h-5 img-no-bg"> ${SOCIAL_DATA[1].name}</a>
                 </div>
                 <div class="grid grid-cols-2 gap-4 mb-4">
-                    <a href="${SOCIAL_DATA[2].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[2].icon}" class="w-5 h-5 mix-blend-screen"> ${SOCIAL_DATA[2].name}</a>
-                    <a href="${SOCIAL_DATA[3].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[3].icon}" class="w-5 h-5 mix-blend-screen"> ${SOCIAL_DATA[3].name}</a>
+                    <a href="${SOCIAL_DATA[2].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[2].icon}" class="w-5 h-5 img-no-bg"> ${SOCIAL_DATA[2].name}</a>
+                    <a href="${SOCIAL_DATA[3].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[3].icon}" class="w-5 h-5 img-no-bg"> ${SOCIAL_DATA[3].name}</a>
                 </div>
                 <div class="flex justify-center">
-                    <a href="${SOCIAL_DATA[4].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition w-full text-xs"><img src="${SOCIAL_DATA[4].icon}" class="w-5 h-5 mix-blend-screen"> ${SOCIAL_DATA[4].name}</a>
+                    <a href="${SOCIAL_DATA[4].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition w-full text-xs"><img src="${SOCIAL_DATA[4].icon}" class="w-5 h-5 img-no-bg"> ${SOCIAL_DATA[4].name}</a>
                 </div>
             `;
         });
 
+        // Funzione per copiare
         function copiaTesto(id, btn) {
             const txt = document.getElementById(id).innerText;
             navigator.clipboard.writeText(txt);
             btn.innerText = "Copiato! ✅";
             setTimeout(() => btn.innerText = "Copia 📋", 2000);
+        }
+
+        // Funzione per provare ad aprire il wallet
+        function tentareWallet(uri, address) {
+            try {
+                window.location.href = uri;
+            } catch(e) {
+                navigator.clipboard.writeText(address);
+                alert("Nessun wallet trovato. Indirizzo copiato negli appunti!");
+            }
         }
     </script>
 </body>
