@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
@@ -15,18 +15,17 @@
         /* QR Code bianco su sfondo trasparente */
         .qr-wrapper img { margin: 0 auto; padding: 5px; background: white; border-radius: 8px; }
         
-        /* Logo iniziale - Mantiene il suo stile */
+        /* Logo iniziale - Mantiene lo stile originale */
         .logo-auth { mix-blend-mode: screen; }
 
-        /* CLASSE OTTIMIZZATA: Rimuove lo sfondo bianco da icone e firme */
-        .clean-img { mix-blend-mode: multiply; }
+        /* NUOVA SOLUZIONE PROFESSIONALE: Forza le icone a bianco puro, eliminando i bordi scuri/sfondi */
+        .clean-img { filter: brightness(0) invert(1); }
     </style>
 </head>
 <body class="blockchain-bg text-slate-100 font-sans antialiased py-10 px-4 min-h-screen">
 
     <div class="max-w-md mx-auto space-y-8">
         <div class="text-center space-y-4">
-            <!-- LOGO: Lasciato come richiesto -->
             <img src="logo-autenticita.png" alt="Logo" class="w-32 h-32 mx-auto logo-auth drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
             <h1 class="text-2xl font-black text-white tracking-tight">Supporta il progetto futuristico! ⚡</h1>
             <p class="text-sm text-cyan-200/90 font-medium leading-relaxed">Scegli la crypto e la rete corretta. Zero intermediari, totale trasparenza on-chain.</p>
@@ -40,7 +39,7 @@
         </div>
 
         <div class="text-center pt-8 space-y-6">
-            <!-- FIRMA: Classe clean-img applicata per rimuovere il bianco -->
+            <!-- La firma ora è bianca e si stacca perfettamente -->
             <img src="signature.png" alt="Firma" class="w-full max-w-lg mx-auto clean-img">
             
             <div class="border-t border-cyan-500/20 pt-6 space-y-4">
@@ -77,7 +76,6 @@
             CRYPTO_DATA.forEach(c => {
                 const div = document.createElement('div');
                 div.className = "bg-slate-900/60 p-5 rounded-2xl border border-cyan-500/30 backdrop-blur-md";
-                // Aggiunta classe clean-img qui sotto
                 div.innerHTML = `
                     <div class="flex items-center gap-3 mb-4">
                         <img src="${c.icon}" class="w-8 h-8 object-contain clean-img" alt="${c.name}">
