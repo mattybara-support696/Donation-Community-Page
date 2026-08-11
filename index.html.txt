@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MattYbarA Community | Official Donation Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        @keyframes blockchainPulse {
+            0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; }
+        }
+        .blockchain-bg { background: linear-gradient(-45deg, #020617, #0284c7, #1e1b4b, #dc2626, #090d16); background-size: 400% 400%; animation: blockchainPulse 12s ease infinite; }
+        .qr-wrapper img { margin: 0 auto; padding: 5px; background: white; border-radius: 8px; }
+    </style>
+</head>
+<body class="blockchain-bg text-slate-100 font-sans antialiased py-10 px-4 min-h-screen">
+
+    <div class="max-w-md mx-auto space-y-8">
+        <div class="text-center space-y-4">
+            <img src="logo-autenticita.png" alt="Logo" class="w-32 h-32 mx-auto drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+            <h1 class="text-2xl font-black text-white tracking-tight">Supporta il progetto futuristico! ⚡</h1>
+            <p class="text-sm text-cyan-200/90 font-medium leading-relaxed">Scegli la crypto e la rete corretta. Zero intermediari, totale trasparenza on-chain.</p>
+        </div>
+
+        <div id="crypto-list" class="space-y-6"></div>
+
+        <div class="bg-slate-900/80 backdrop-blur-md border border-cyan-500/30 rounded-2xl p-6 shadow-2xl">
+            <h4 class="text-center font-bold text-slate-300 mb-6 uppercase tracking-widest text-sm">Canali Social</h4>
+            <div id="social-container" class="space-y-4"></div>
+        </div>
+
+        <div class="text-center pt-8 space-y-6">
+            <img src="signature.png" alt="Firma" class="h-16 mx-auto filter invert opacity-80">
+            <div class="border-t border-cyan-500/20 pt-6 space-y-4">
+                <p class="text-xs text-slate-500">MattYbarA Community © 2026 — Tutti i diritti riservati.</p>
+                <div class="bg-black/40 p-4 rounded-lg border border-red-900/30">
+                    <p class="text-[10px] text-red-400 font-bold uppercase tracking-wide mb-2">Verifica il dominio:</p>
+                    <p class="text-cyan-400 font-mono text-xs break-all">mattybara-support696-code.github.io/Donation-Community-Page/</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- CONFIGURAZIONE: INSERISCI QUI I TUOI DATI E GLI IMPORTI DI DEFAULT ---
+        const CRYPTO_DATA = [
+            { id: 'btc', name: 'Bitcoin (BTC)', address: 'bc1qmwrktrjdg4u2fql4nllenhnjn2fg7v3g794agn', icon: 'btc.png', uri: 'bitcoin' },
+            { id: 'eth', name: 'Ethereum (ETH)', address: '0xCEcDA843f36ED21D73CaB75ACbD93742652070a2', icon: 'eth.png', uri: 'ethereum' },
+            { id: 'sol', name: 'Solana (SOL)', address: '8FBuZyxgcPKxkeruouQ9nYPCPsFS6rVuHoF31ipRCW2z', icon: 'sol.png', uri: 'solana' },
+            { id: 'trx', name: 'Tron (TRX)', address: 'TFuihedg61D7SQhq9Uo7fc6eZZWKT9z42c', icon: 'trx.png', uri: 'tron' },
+            { id: 'usdt', name: 'Tether (USDT)', address: 'TFuihedg61D7SQhq9Uo7fc6eZZWKT9z42c', icon: 'usdt.png', uri: 'usdt' },
+            { id: 'usdc', name: 'USDC', address: 'TFuihedg61D7SQhq9Uo7fc6eZZWKT9z42c', icon: 'usdc.png', uri: 'usdc' },
+            { id: 'xaut', name: 'Tether Gold (XAUT)', address: '0xCEcDA843f36ED21D73CaB75ACbD93742652070a2', icon: 'xaut.png', uri: 'xaut' }
+        ];
+
+        const SOCIAL_DATA = [
+            { name: 'Telegram', url: 'https://mattybara.s.gy/DW44dl', icon: 'telegram.png' },
+            { name: 'Instagram', url: 'https://mattybara.s.gy/N9bDtE', icon: 'instagram.png' },
+            { name: 'X', url: 'https://mattybara.s.gy/WENuyy', icon: 'x.png' },
+            { name: 'Youtube', url: 'https://mattybara.s.gy/u5gLdU', icon: 'youtube.png' },
+            { name: 'Spotify', url: 'https://mattybara.s.gy/N9bDtE', icon: 'spotify.png' }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('crypto-list');
+            CRYPTO_DATA.forEach(c => {
+                const div = document.createElement('div');
+                div.className = "bg-slate-900/60 p-5 rounded-2xl border border-cyan-500/30 backdrop-blur-md";
+                // Il link pre-compila l'indirizzo. Puoi aggiungere ?amount=0.01 per pre-compilare l'importo
+                const paymentLink = `${c.uri}:${c.address}`; 
+                
+                div.innerHTML = `
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="${c.icon}" class="w-8 h-8" alt="${c.name}">
+                        <span class="font-bold text-lg text-white">${c.name}</span>
+                    </div>
+                    <div id="qr-${c.id}" class="qr-wrapper mb-4"></div>
+                    <div class="flex flex-col gap-2">
+                        <div class="flex items-center bg-black/50 p-3 rounded-lg border border-slate-700">
+                            <span id="addr-${c.id}" class="text-[10px] font-mono truncate mr-2 flex-1">${c.address}</span>
+                            <button onclick="copiaTesto('addr-${c.id}', this)" class="bg-cyan-700 px-3 py-1 text-xs rounded font-bold hover:bg-cyan-600 transition">Copia 📋</button>
+                        </div>
+                        <a href="${paymentLink}" class="text-center bg-red-700/80 hover:bg-red-600 transition p-2 rounded-lg text-xs font-bold uppercase tracking-wider">Apri Wallet / Invia Donazione</a>
+                    </div>
+                `;
+                container.appendChild(div);
+                new QRCode(document.getElementById(`qr-${c.id}`), { text: c.address, width: 128, height: 128 });
+            });
+
+            // Render Social (2 righe da 2 + 1)
+            const socCont = document.getElementById('social-container');
+            socCont.innerHTML = `
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <a href="${SOCIAL_DATA[0].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[0].icon}" class="w-5 h-5"> ${SOCIAL_DATA[0].name}</a>
+                    <a href="${SOCIAL_DATA[1].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[1].icon}" class="w-5 h-5"> ${SOCIAL_DATA[1].name}</a>
+                </div>
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <a href="${SOCIAL_DATA[2].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[2].icon}" class="w-5 h-5"> ${SOCIAL_DATA[2].name}</a>
+                    <a href="${SOCIAL_DATA[3].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[3].icon}" class="w-5 h-5"> ${SOCIAL_DATA[3].name}</a>
+                </div>
+                <div class="flex justify-center">
+                    <a href="${SOCIAL_DATA[4].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition w-full text-xs"><img src="${SOCIAL_DATA[4].icon}" class="w-5 h-5"> ${SOCIAL_DATA[4].name}</a>
+                </div>
+            `;
+        });
+
+        function copiaTesto(id, btn) {
+            const txt = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(txt);
+            btn.innerText = "Copiato! ✅";
+            setTimeout(() => btn.innerText = "Copia 📋", 2000);
+        }
+    </script>
+</body>
+</html>
