@@ -11,16 +11,22 @@
             0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; }
         }
         .blockchain-bg { background: linear-gradient(-45deg, #020617, #0284c7, #1e1b4b, #dc2626, #090d16); background-size: 400% 400%; animation: blockchainPulse 12s ease infinite; }
+        
+        /* QR Code bianco su sfondo trasparente */
         .qr-wrapper img { margin: 0 auto; padding: 5px; background: white; border-radius: 8px; }
+        
+        /* Logo iniziale - Mantiene il suo stile */
         .logo-auth { mix-blend-mode: screen; }
-        /* Rimuove lo sfondo bianco della signature fondendola perfettamente con lo sfondo scuro */
-        .signature-clean { filter: invert(1); mix-blend-mode: screen; }
+
+        /* CLASSE OTTIMIZZATA: Rimuove lo sfondo bianco da icone e firme */
+        .clean-img { mix-blend-mode: multiply; }
     </style>
 </head>
 <body class="blockchain-bg text-slate-100 font-sans antialiased py-10 px-4 min-h-screen">
 
     <div class="max-w-md mx-auto space-y-8">
         <div class="text-center space-y-4">
+            <!-- LOGO: Lasciato come richiesto -->
             <img src="logo-autenticita.png" alt="Logo" class="w-32 h-32 mx-auto logo-auth drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
             <h1 class="text-2xl font-black text-white tracking-tight">Supporta il progetto futuristico! ⚡</h1>
             <p class="text-sm text-cyan-200/90 font-medium leading-relaxed">Scegli la crypto e la rete corretta. Zero intermediari, totale trasparenza on-chain.</p>
@@ -34,8 +40,8 @@
         </div>
 
         <div class="text-center pt-8 space-y-6">
-            <!-- SIGNATURE PULITA E SENZA SFONDO -->
-            <img src="signature.png" alt="Firma" class="w-full max-w-lg mx-auto signature-clean drop-shadow-md">
+            <!-- FIRMA: Classe clean-img applicata per rimuovere il bianco -->
+            <img src="signature.png" alt="Firma" class="w-full max-w-lg mx-auto clean-img">
             
             <div class="border-t border-cyan-500/20 pt-6 space-y-4">
                 <p class="text-xs text-slate-500">MattYbarA Community © 2026 — Tutti i diritti riservati.</p>
@@ -48,43 +54,14 @@
     </div>
 
     <script>
-        // Configurazione dei pulsanti suddivisi per Crypto con link short.io (Ledger + App Specifica)
         const CRYPTO_DATA = [
-            { 
-                id: 'btc', name: 'Bitcoin (BTC)', address: 'bc1qmwrktrjdg4u2fql4nllenhnjn2fg7v3g794agn', icon: 'btc.png', 
-                btn1Text: 'Ledger', btn1Url: 'https://mattybara.s.gy/mMz8DP', 
-                btn2Text: 'Base', btn2Url: 'https://mattybara.s.gy/uaf9vf' 
-            },
-            { 
-                id: 'eth', name: 'Ethereum (ETH)', address: '0xCEcDA843f36ED21D73CaB75ACbD93742652070a2', icon: 'eth.png', 
-                btn1Text: 'Ledger', btn1Url: 'https://mattybara.s.gy/mMz8DP', 
-                btn2Text: 'Rabby', btn2Url: 'https://mattybara.s.gy/yPAzFs' 
-            },
-            { 
-                id: 'sol', name: 'Solana (SOL)', address: '8FBuZyxgcPKxkeruouQ9nYPCPsFS6rVuHoF31ipRCW2z', icon: 'sol.png', 
-                btn1Text: 'Ledger', btn1Url: 'https://mattybara.s.gy/mMz8DP', 
-                btn2Text: 'Phantom', btn2Url: 'https://mattybara.s.gy/bNgxxA' 
-            },
-            { 
-                id: 'trx', name: 'Tron (TRX)', address: 'TFuihedg61D7SQhq9Uo7fc6eZZWKT9z42c', icon: 'trx.png', 
-                btn1Text: 'Ledger', btn1Url: 'https://mattybara.s.gy/mMz8DP', 
-                btn2Text: 'TronLink', btn2Url: 'https://mattybara.s.gy/gxhSYI' 
-            },
-            { 
-                id: 'usdt', name: 'Tether (USDT)', address: 'TFuihedg61D7SQhq9Uo7fc6eZZWKT9z42c', icon: 'usdt.png', 
-                btn1Text: 'Ledger', btn1Url: 'https://mattybara.s.gy/mMz8DP', 
-                btn2Text: 'Exodus', btn2Url: 'https://mattybara.s.gy/k7lAlI' 
-            },
-            { 
-                id: 'usdc', name: 'USDC', address: 'TFuihedg61D7SQhq9Uo7fc6eZZWKT9z42c', icon: 'usdc.png', 
-                btn1Text: 'Ledger', btn1Url: 'https://mattybara.s.gy/mMz8DP', 
-                btn2Text: 'Trust', btn2Url: 'https://mattybara.s.gy/K5TtYC' 
-            },
-            { 
-                id: 'xaut', name: 'Tether Gold (XAUT)', address: '0xCEcDA843f36ED21D73CaB75ACbD93742652070a2', icon: 'xaut.png', 
-                btn1Text: 'Ledger', btn1Url: 'https://mattybara.s.gy/mMz8DP', 
-                btn2Text: 'MetaMask', btn2Url: 'https://mattybara.s.gy/Ml69zd' 
-            }
+            { id: 'btc', name: 'Bitcoin (BTC)', address: 'bc1qmwrktrjdg4u2fql4nllenhnjn2fg7v3g794agn', icon: 'btc.png', btn1Text: 'Ledger', btn1Url: 'https://mattybara.s.gy/mMz8DP', btn2Text: 'Base', btn2Url: 'https://mattybara.s.gy/uaf9vf' },
+            { id: 'eth', name: 'Ethereum (ETH)', address: '0xCEcDA843f36ED21D73CaB75ACbD93742652070a2', icon: 'eth.png', btn1Text: 'Ledger', btn1Url: 'https://mattybara.s.gy/mMz8DP', btn2Text: 'Rabby', btn2Url: 'https://mattybara.s.gy/yPAzFs' },
+            { id: 'sol', name: 'Solana (SOL)', address: '8FBuZyxgcPKxkeruouQ9nYPCPsFS6rVuHoF31ipRCW2z', icon: 'sol.png', btn1Text: 'Ledger', btn1Url: 'https://mattybara.s.gy/mMz8DP', btn2Text: 'Phantom', btn2Url: 'https://mattybara.s.gy/bNgxxA' },
+            { id: 'trx', name: 'Tron (TRX)', address: 'TFuihedg61D7SQhq9Uo7fc6eZZWKT9z42c', icon: 'trx.png', btn1Text: 'Ledger', btn1Url: 'https://mattybara.s.gy/mMz8DP', btn2Text: 'TronLink', btn2Url: 'https://mattybara.s.gy/gxhSYI' },
+            { id: 'usdt', name: 'Tether (USDT)', address: 'TFuihedg61D7SQhq9Uo7fc6eZZWKT9z42c', icon: 'usdt.png', btn1Text: 'Ledger', btn1Url: 'https://mattybara.s.gy/mMz8DP', btn2Text: 'Exodus', btn2Url: 'https://mattybara.s.gy/k7lAlI' },
+            { id: 'usdc', name: 'USDC', address: 'TFuihedg61D7SQhq9Uo7fc6eZZWKT9z42c', icon: 'usdc.png', btn1Text: 'Ledger', btn1Url: 'https://mattybara.s.gy/mMz8DP', btn2Text: 'Trust', btn2Url: 'https://mattybara.s.gy/K5TtYC' },
+            { id: 'xaut', name: 'Tether Gold (XAUT)', address: '0xCEcDA843f36ED21D73CaB75ACbD93742652070a2', icon: 'xaut.png', btn1Text: 'Ledger', btn1Url: 'https://mattybara.s.gy/mMz8DP', btn2Text: 'MetaMask', btn2Url: 'https://mattybara.s.gy/Ml69zd' }
         ];
 
         const SOCIAL_DATA = [
@@ -100,10 +77,10 @@
             CRYPTO_DATA.forEach(c => {
                 const div = document.createElement('div');
                 div.className = "bg-slate-900/60 p-5 rounded-2xl border border-cyan-500/30 backdrop-blur-md";
-                
+                // Aggiunta classe clean-img qui sotto
                 div.innerHTML = `
                     <div class="flex items-center gap-3 mb-4">
-                        <img src="${c.icon}" class="w-8 h-8 object-contain" alt="${c.name}">
+                        <img src="${c.icon}" class="w-8 h-8 object-contain clean-img" alt="${c.name}">
                         <span class="font-bold text-lg text-white">${c.name}</span>
                     </div>
                     <div id="qr-${c.id}" class="qr-wrapper mb-4"></div>
@@ -125,15 +102,15 @@
             const socCont = document.getElementById('social-container');
             socCont.innerHTML = `
                 <div class="grid grid-cols-2 gap-4 mb-4">
-                    <a href="${SOCIAL_DATA[0].url}" target="_blank" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[0].icon}" class="w-5 h-5 object-contain"> ${SOCIAL_DATA[0].name}</a>
-                    <a href="${SOCIAL_DATA[1].url}" target="_blank" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[1].icon}" class="w-5 h-5 object-contain"> ${SOCIAL_DATA[1].name}</a>
+                    <a href="${SOCIAL_DATA[0].url}" target="_blank" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[0].icon}" class="w-5 h-5 object-contain clean-img"> ${SOCIAL_DATA[0].name}</a>
+                    <a href="${SOCIAL_DATA[1].url}" target="_blank" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[1].icon}" class="w-5 h-5 object-contain clean-img"> ${SOCIAL_DATA[1].name}</a>
                 </div>
                 <div class="grid grid-cols-2 gap-4 mb-4">
-                    <a href="${SOCIAL_DATA[2].url}" target="_blank" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[2].icon}" class="w-5 h-5 object-contain"> ${SOCIAL_DATA[2].name}</a>
-                    <a href="${SOCIAL_DATA[3].url}" target="_blank" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[3].icon}" class="w-5 h-5 object-contain"> ${SOCIAL_DATA[3].name}</a>
+                    <a href="${SOCIAL_DATA[2].url}" target="_blank" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[2].icon}" class="w-5 h-5 object-contain clean-img"> ${SOCIAL_DATA[2].name}</a>
+                    <a href="${SOCIAL_DATA[3].url}" target="_blank" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[3].icon}" class="w-5 h-5 object-contain clean-img"> ${SOCIAL_DATA[3].name}</a>
                 </div>
                 <div class="flex justify-center">
-                    <a href="${SOCIAL_DATA[4].url}" target="_blank" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition w-full text-xs"><img src="${SOCIAL_DATA[4].icon}" class="w-5 h-5 object-contain"> ${SOCIAL_DATA[4].name}</a>
+                    <a href="${SOCIAL_DATA[4].url}" target="_blank" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition w-full text-xs"><img src="${SOCIAL_DATA[4].icon}" class="w-5 h-5 object-contain clean-img"> ${SOCIAL_DATA[4].name}</a>
                 </div>
             `;
         });
