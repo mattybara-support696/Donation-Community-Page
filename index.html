@@ -12,8 +12,9 @@
         }
         .blockchain-bg { background: linear-gradient(-45deg, #020617, #0284c7, #1e1b4b, #dc2626, #090d16); background-size: 400% 400%; animation: blockchainPulse 12s ease infinite; }
         .qr-wrapper img { margin: 0 auto; padding: 5px; background: white; border-radius: 8px; }
-        .img-transparent { mix-blend-mode: screen; filter: invert(1); }
         .logo-auth { mix-blend-mode: screen; }
+        /* Rimuove lo sfondo bianco della signature fondendola perfettamente con lo sfondo scuro */
+        .signature-clean { filter: invert(1); mix-blend-mode: screen; }
     </style>
 </head>
 <body class="blockchain-bg text-slate-100 font-sans antialiased py-10 px-4 min-h-screen">
@@ -33,8 +34,8 @@
         </div>
 
         <div class="text-center pt-8 space-y-6">
-            <!-- SIGNATURE ULTERIORMENTE INGRANDITA -->
-            <img src="signature.png" alt="Firma" class="w-full max-w-lg mx-auto img-transparent drop-shadow-md">
+            <!-- SIGNATURE PULITA E SENZA SFONDO -->
+            <img src="signature.png" alt="Firma" class="w-full max-w-lg mx-auto signature-clean drop-shadow-md">
             
             <div class="border-t border-cyan-500/20 pt-6 space-y-4">
                 <p class="text-xs text-slate-500">MattYbarA Community © 2026 — Tutti i diritti riservati.</p>
@@ -47,14 +48,43 @@
     </div>
 
     <script>
+        // Configurazione dei pulsanti suddivisi per Crypto con link short.io (Ledger + App Specifica)
         const CRYPTO_DATA = [
-            { id: 'btc', name: 'Bitcoin (BTC)', address: 'bc1qmwrktrjdg4u2fql4nllenhnjn2fg7v3g794agn', icon: 'btc.png', uri: 'bitcoin' },
-            { id: 'eth', name: 'Ethereum (ETH)', address: '0xCEcDA843f36ED21D73CaB75ACbD93742652070a2', icon: 'eth.png', uri: 'ethereum' },
-            { id: 'sol', name: 'Solana (SOL)', address: '8FBuZyxgcPKxkeruouQ9nYPCPsFS6rVuHoF31ipRCW2z', icon: 'sol.png', uri: 'solana' },
-            { id: 'trx', name: 'Tron (TRX)', address: 'TFuihedg61D7SQhq9Uo7fc6eZZWKT9z42c', icon: 'trx.png', uri: 'tron' },
-            { id: 'usdt', name: 'Tether (USDT)', address: 'TFuihedg61D7SQhq9Uo7fc6eZZWKT9z42c', icon: 'usdt.png', uri: 'usdt' },
-            { id: 'usdc', name: 'USDC', address: 'TFuihedg61D7SQhq9Uo7fc6eZZWKT9z42c', icon: 'usdc.png', uri: 'usdc' },
-            { id: 'xaut', name: 'Tether Gold (XAUT)', address: '0xCEcDA843f36ED21D73CaB75ACbD93742652070a2', icon: 'xaut.png', uri: 'xaut' }
+            { 
+                id: 'btc', name: 'Bitcoin (BTC)', address: 'bc1qmwrktrjdg4u2fql4nllenhnjn2fg7v3g794agn', icon: 'btc.png', 
+                btn1Text: 'Ledger', btn1Url: 'https://mattybara.s.gy/mMz8DP', 
+                btn2Text: 'Base', btn2Url: 'https://mattybara.s.gy/uaf9vf' 
+            },
+            { 
+                id: 'eth', name: 'Ethereum (ETH)', address: '0xCEcDA843f36ED21D73CaB75ACbD93742652070a2', icon: 'eth.png', 
+                btn1Text: 'Ledger', btn1Url: 'https://mattybara.s.gy/mMz8DP', 
+                btn2Text: 'Rabby', btn2Url: 'https://mattybara.s.gy/yPAzFs' 
+            },
+            { 
+                id: 'sol', name: 'Solana (SOL)', address: '8FBuZyxgcPKxkeruouQ9nYPCPsFS6rVuHoF31ipRCW2z', icon: 'sol.png', 
+                btn1Text: 'Ledger', btn1Url: 'https://mattybara.s.gy/mMz8DP', 
+                btn2Text: 'Phantom', btn2Url: 'https://mattybara.s.gy/bNgxxA' 
+            },
+            { 
+                id: 'trx', name: 'Tron (TRX)', address: 'TFuihedg61D7SQhq9Uo7fc6eZZWKT9z42c', icon: 'trx.png', 
+                btn1Text: 'Ledger', btn1Url: 'https://mattybara.s.gy/mMz8DP', 
+                btn2Text: 'TronLink', btn2Url: 'https://mattybara.s.gy/gxhSYI' 
+            },
+            { 
+                id: 'usdt', name: 'Tether (USDT)', address: 'TFuihedg61D7SQhq9Uo7fc6eZZWKT9z42c', icon: 'usdt.png', 
+                btn1Text: 'Ledger', btn1Url: 'https://mattybara.s.gy/mMz8DP', 
+                btn2Text: 'Exodus', btn2Url: 'https://mattybara.s.gy/k7lAlI' 
+            },
+            { 
+                id: 'usdc', name: 'USDC', address: 'TFuihedg61D7SQhq9Uo7fc6eZZWKT9z42c', icon: 'usdc.png', 
+                btn1Text: 'Ledger', btn1Url: 'https://mattybara.s.gy/mMz8DP', 
+                btn2Text: 'Trust', btn2Url: 'https://mattybara.s.gy/K5TtYC' 
+            },
+            { 
+                id: 'xaut', name: 'Tether Gold (XAUT)', address: '0xCEcDA843f36ED21D73CaB75ACbD93742652070a2', icon: 'xaut.png', 
+                btn1Text: 'Ledger', btn1Url: 'https://mattybara.s.gy/mMz8DP', 
+                btn2Text: 'MetaMask', btn2Url: 'https://mattybara.s.gy/Ml69zd' 
+            }
         ];
 
         const SOCIAL_DATA = [
@@ -73,17 +103,19 @@
                 
                 div.innerHTML = `
                     <div class="flex items-center gap-3 mb-4">
-                        <img src="${c.icon}" class="w-8 h-8 img-transparent object-contain" alt="${c.name}">
+                        <img src="${c.icon}" class="w-8 h-8 object-contain" alt="${c.name}">
                         <span class="font-bold text-lg text-white">${c.name}</span>
                     </div>
                     <div id="qr-${c.id}" class="qr-wrapper mb-4"></div>
-                    <div class="flex flex-col gap-2">
+                    <div class="flex flex-col gap-3">
                         <div class="flex items-center bg-black/50 p-3 rounded-lg border border-slate-700">
-                            <!-- CARATTERI WALLET RADDOPPIATI -->
                             <span id="addr-${c.id}" class="text-sm font-mono break-all mr-2 flex-1">${c.address}</span>
                             <button onclick="copiaTesto('addr-${c.id}', this)" class="bg-cyan-700 px-3 py-1 text-xs rounded font-bold hover:bg-cyan-600 transition shrink-0">Copia 📋</button>
                         </div>
-                        <button onclick="apriWallet('${c.uri}:${c.address}', '${c.address}')" class="text-center bg-red-700/80 hover:bg-red-600 transition p-2 rounded-lg text-xs font-bold uppercase tracking-wider">Apri Wallet / Invia Donazione</button>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="${c.btn1Url}" target="_blank" class="text-center bg-cyan-700/80 hover:bg-cyan-600 transition p-2 rounded-lg text-xs font-bold uppercase tracking-wider block">${c.btn1Text}</a>
+                            <a href="${c.btn2Url}" target="_blank" class="text-center bg-red-700/80 hover:bg-red-600 transition p-2 rounded-lg text-xs font-bold uppercase tracking-wider block">${c.btn2Text}</a>
+                        </div>
                     </div>
                 `;
                 container.appendChild(div);
@@ -93,15 +125,15 @@
             const socCont = document.getElementById('social-container');
             socCont.innerHTML = `
                 <div class="grid grid-cols-2 gap-4 mb-4">
-                    <a href="${SOCIAL_DATA[0].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[0].icon}" class="w-5 h-5 img-transparent object-contain"> ${SOCIAL_DATA[0].name}</a>
-                    <a href="${SOCIAL_DATA[1].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[1].icon}" class="w-5 h-5 img-transparent object-contain"> ${SOCIAL_DATA[1].name}</a>
+                    <a href="${SOCIAL_DATA[0].url}" target="_blank" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[0].icon}" class="w-5 h-5 object-contain"> ${SOCIAL_DATA[0].name}</a>
+                    <a href="${SOCIAL_DATA[1].url}" target="_blank" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[1].icon}" class="w-5 h-5 object-contain"> ${SOCIAL_DATA[1].name}</a>
                 </div>
                 <div class="grid grid-cols-2 gap-4 mb-4">
-                    <a href="${SOCIAL_DATA[2].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[2].icon}" class="w-5 h-5 img-transparent object-contain"> ${SOCIAL_DATA[2].name}</a>
-                    <a href="${SOCIAL_DATA[3].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[3].icon}" class="w-5 h-5 img-transparent object-contain"> ${SOCIAL_DATA[3].name}</a>
+                    <a href="${SOCIAL_DATA[2].url}" target="_blank" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[2].icon}" class="w-5 h-5 object-contain"> ${SOCIAL_DATA[2].name}</a>
+                    <a href="${SOCIAL_DATA[3].url}" target="_blank" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[3].icon}" class="w-5 h-5 object-contain"> ${SOCIAL_DATA[3].name}</a>
                 </div>
                 <div class="flex justify-center">
-                    <a href="${SOCIAL_DATA[4].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition w-full text-xs"><img src="${SOCIAL_DATA[4].icon}" class="w-5 h-5 img-transparent object-contain"> ${SOCIAL_DATA[4].name}</a>
+                    <a href="${SOCIAL_DATA[4].url}" target="_blank" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition w-full text-xs"><img src="${SOCIAL_DATA[4].icon}" class="w-5 h-5 object-contain"> ${SOCIAL_DATA[4].name}</a>
                 </div>
             `;
         });
@@ -111,15 +143,6 @@
             navigator.clipboard.writeText(txt);
             btn.innerText = "Copiato! ✅";
             setTimeout(() => btn.innerText = "Copia 📋", 2000);
-        }
-
-        function apriWallet(uri, address) {
-            try {
-                window.location.href = uri;
-            } catch(e) {
-                navigator.clipboard.writeText(address);
-                alert("Nessun wallet trovato. Indirizzo copiato negli appunti!");
-            }
         }
     </script>
 </body>
