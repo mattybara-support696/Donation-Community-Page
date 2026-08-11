@@ -18,7 +18,8 @@
 
     <div class="max-w-md mx-auto space-y-8">
         <div class="text-center space-y-4">
-            <img src="logo-autenticita.png" alt="Logo" class="w-32 h-32 mx-auto drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+            <!-- Logo autenticità con sfondo trasparente/sfumato -->
+            <img src="logo-autenticita.png" alt="Logo" class="w-32 h-32 mx-auto mix-blend-screen drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
             <h1 class="text-2xl font-black text-white tracking-tight">Supporta il progetto futuristico! ⚡</h1>
             <p class="text-sm text-cyan-200/90 font-medium leading-relaxed">Scegli la crypto e la rete corretta. Zero intermediari, totale trasparenza on-chain.</p>
         </div>
@@ -31,19 +32,19 @@
         </div>
 
         <div class="text-center pt-8 space-y-6">
-            <img src="signature.png" alt="Firma" class="h-16 mx-auto filter invert opacity-80">
+            <!-- Firma ingrandita e senza sfondo -->
+            <img src="signature.png" alt="Firma" class="h-28 md:h-32 mx-auto filter invert opacity-100 mix-blend-screen drop-shadow-md">
             <div class="border-t border-cyan-500/20 pt-6 space-y-4">
                 <p class="text-xs text-slate-500">MattYbarA Community © 2026 — Tutti i diritti riservati.</p>
                 <div class="bg-black/40 p-4 rounded-lg border border-red-900/30">
                     <p class="text-[10px] text-red-400 font-bold uppercase tracking-wide mb-2">Verifica il dominio:</p>
-                    <p class="text-cyan-400 font-mono text-xs break-all">mattybara-support696-code.github.io/Donation-Community-Page/</p>
+                    <p class="text-cyan-400 font-mono text-xs break-all">mattybara-support696.github.io/Donation-Community-Page/</p>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // --- CONFIGURAZIONE: INSERISCI QUI I TUOI DATI E GLI IMPORTI DI DEFAULT ---
         const CRYPTO_DATA = [
             { id: 'btc', name: 'Bitcoin (BTC)', address: 'bc1qmwrktrjdg4u2fql4nllenhnjn2fg7v3g794agn', icon: 'btc.png', uri: 'bitcoin' },
             { id: 'eth', name: 'Ethereum (ETH)', address: '0xCEcDA843f36ED21D73CaB75ACbD93742652070a2', icon: 'eth.png', uri: 'ethereum' },
@@ -67,12 +68,11 @@
             CRYPTO_DATA.forEach(c => {
                 const div = document.createElement('div');
                 div.className = "bg-slate-900/60 p-5 rounded-2xl border border-cyan-500/30 backdrop-blur-md";
-                // Il link pre-compila l'indirizzo. Puoi aggiungere ?amount=0.01 per pre-compilare l'importo
                 const paymentLink = `${c.uri}:${c.address}`; 
                 
                 div.innerHTML = `
                     <div class="flex items-center gap-3 mb-4">
-                        <img src="${c.icon}" class="w-8 h-8" alt="${c.name}">
+                        <img src="${c.icon}" class="w-8 h-8 mix-blend-screen" alt="${c.name}">
                         <span class="font-bold text-lg text-white">${c.name}</span>
                     </div>
                     <div id="qr-${c.id}" class="qr-wrapper mb-4"></div>
@@ -88,19 +88,18 @@
                 new QRCode(document.getElementById(`qr-${c.id}`), { text: c.address, width: 128, height: 128 });
             });
 
-            // Render Social (2 righe da 2 + 1)
             const socCont = document.getElementById('social-container');
             socCont.innerHTML = `
                 <div class="grid grid-cols-2 gap-4 mb-4">
-                    <a href="${SOCIAL_DATA[0].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[0].icon}" class="w-5 h-5"> ${SOCIAL_DATA[0].name}</a>
-                    <a href="${SOCIAL_DATA[1].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[1].icon}" class="w-5 h-5"> ${SOCIAL_DATA[1].name}</a>
+                    <a href="${SOCIAL_DATA[0].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[0].icon}" class="w-5 h-5 mix-blend-screen"> ${SOCIAL_DATA[0].name}</a>
+                    <a href="${SOCIAL_DATA[1].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[1].icon}" class="w-5 h-5 mix-blend-screen"> ${SOCIAL_DATA[1].name}</a>
                 </div>
                 <div class="grid grid-cols-2 gap-4 mb-4">
-                    <a href="${SOCIAL_DATA[2].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[2].icon}" class="w-5 h-5"> ${SOCIAL_DATA[2].name}</a>
-                    <a href="${SOCIAL_DATA[3].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[3].icon}" class="w-5 h-5"> ${SOCIAL_DATA[3].name}</a>
+                    <a href="${SOCIAL_DATA[2].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[2].icon}" class="w-5 h-5 mix-blend-screen"> ${SOCIAL_DATA[2].name}</a>
+                    <a href="${SOCIAL_DATA[3].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition text-xs"><img src="${SOCIAL_DATA[3].icon}" class="w-5 h-5 mix-blend-screen"> ${SOCIAL_DATA[3].name}</a>
                 </div>
                 <div class="flex justify-center">
-                    <a href="${SOCIAL_DATA[4].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition w-full text-xs"><img src="${SOCIAL_DATA[4].icon}" class="w-5 h-5"> ${SOCIAL_DATA[4].name}</a>
+                    <a href="${SOCIAL_DATA[4].url}" class="flex items-center justify-center gap-2 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-cyan-500 transition w-full text-xs"><img src="${SOCIAL_DATA[4].icon}" class="w-5 h-5 mix-blend-screen"> ${SOCIAL_DATA[4].name}</a>
                 </div>
             `;
         });
