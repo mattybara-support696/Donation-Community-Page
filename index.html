@@ -15,10 +15,10 @@
         /* QR Code bianco su sfondo trasparente */
         .qr-wrapper img { margin: 0 auto; padding: 5px; background: white; border-radius: 8px; }
         
-        /* Logo iniziale - Mantiene lo stile originale */
+        /* Logo iniziale */
         .logo-auth { mix-blend-mode: screen; }
 
-        /* SOLUZIONE DEFINITIVA: Inverte i colori e rimuove lo sfondo nero/bianco con lo screen blend */
+        /* SOLUZIONE DEFINITIVA: Inverte i colori e rimuove lo sfondo nero/bianco con lo screen blend pulito */
         .clean-img { filter: invert(1); mix-blend-mode: screen; }
     </style>
 </head>
@@ -33,7 +33,7 @@
 
         <div id="crypto-list" class="space-y-6"></div>
 
-        <div class="bg-slate-900/80 backdrop-blur-md border border-cyan-500/30 rounded-2xl p-6 shadow-2xl">
+        <div class="bg-slate-900/95 border border-cyan-500/30 rounded-2xl p-6 shadow-2xl">
             <h4 class="text-center font-bold text-slate-300 mb-6 uppercase tracking-widest text-sm">Canali Social</h4>
             <div id="social-container" class="space-y-4"></div>
         </div>
@@ -74,7 +74,7 @@
             const container = document.getElementById('crypto-list');
             CRYPTO_DATA.forEach(c => {
                 const div = document.createElement('div');
-                div.className = "bg-slate-900/60 p-5 rounded-2xl border border-cyan-500/30 backdrop-blur-md";
+                div.className = "bg-slate-900/95 p-5 rounded-2xl border border-cyan-500/30 shadow-xl";
                 div.innerHTML = `
                     <div class="flex items-center gap-3 mb-4">
                         <img src="${c.icon}" class="w-8 h-8 object-contain clean-img" alt="${c.name}">
