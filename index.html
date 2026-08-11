@@ -18,8 +18,8 @@
         /* Logo iniziale - Mantiene lo stile originale */
         .logo-auth { mix-blend-mode: screen; }
 
-        /* NUOVA SOLUZIONE PROFESSIONALE: Forza le icone a bianco puro, eliminando i bordi scuri/sfondi */
-        .clean-img { filter: brightness(0) invert(1); }
+        /* SOLUZIONE DEFINITIVA: Inverte i colori e rimuove lo sfondo nero/bianco con lo screen blend */
+        .clean-img { filter: invert(1); mix-blend-mode: screen; }
     </style>
 </head>
 <body class="blockchain-bg text-slate-100 font-sans antialiased py-10 px-4 min-h-screen">
@@ -39,7 +39,6 @@
         </div>
 
         <div class="text-center pt-8 space-y-6">
-            <!-- La firma ora è bianca e si stacca perfettamente -->
             <img src="signature.png" alt="Firma" class="w-full max-w-lg mx-auto clean-img">
             
             <div class="border-t border-cyan-500/20 pt-6 space-y-4">
