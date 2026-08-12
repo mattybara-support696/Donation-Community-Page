@@ -18,8 +18,29 @@
         /* Logo iniziale */
         .logo-auth { mix-blend-mode: screen; }
 
-        /* SOLUZIONE DEFINITIVA: Inverte i colori e rimuove lo sfondo nero/bianco con lo screen blend pulito */
+        /* Icone pulite */
         .clean-img { filter: invert(1); mix-blend-mode: screen; }
+
+        /* Effetto Olografico per il tasto principale */
+        @keyframes holoShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .holographic-btn {
+            background: linear-gradient(135deg, #06b6d4, #ec4899, #8b5cf6, #3b82f6, #06b6d4);
+            background-size: 400% 400%;
+            animation: holoShift 8s ease infinite;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.7);
+        }
+        .holographic-btn:hover {
+            filter: brightness(1.25);
+            box-shadow: 0 0 40px rgba(236, 72, 153, 0.9), inset 0 0 25px rgba(255, 255, 255, 0.8);
+            transform: scale(1.02);
+        }
     </style>
 </head>
 <body class="blockchain-bg text-slate-100 font-sans antialiased py-10 px-4 min-h-screen">
@@ -31,18 +52,18 @@
             <p class="text-sm text-cyan-200/90 font-medium leading-relaxed">Scegli la crypto e la rete corretta. Zero intermediari, totale trasparenza on-chain.</p>
         </div>
 
-        <!-- Tasto Principale Fluorescente - MattYbarA WebSite -->
-        <div>
-            <a href="https://mattybara.s.gy/lwkhuz" target="_blank" class="flex items-center justify-center gap-3 w-full py-4 px-6 text-base font-black tracking-wider uppercase text-slate-950 bg-cyan-300 hover:bg-cyan-200 rounded-2xl shadow-[0_0_30px_rgba(6,182,212,0.8)] border-2 border-cyan-100 transition-all transform hover:scale-[1.02]">
-                🌐 MattYbarA WebSite ⚡
-            </a>
-        </div>
-
         <div id="crypto-list" class="space-y-6"></div>
 
-        <div class="bg-slate-900/95 border border-cyan-500/30 rounded-2xl p-6 shadow-2xl">
-            <h4 class="text-center font-bold text-slate-300 mb-6 uppercase tracking-widest text-sm">Canali Social</h4>
+        <div class="bg-slate-900/95 border border-cyan-500/30 rounded-2xl p-6 shadow-2xl space-y-6">
+            <h4 class="text-center font-bold text-slate-300 uppercase tracking-widest text-sm">Canali Social</h4>
             <div id="social-container" class="space-y-4"></div>
+            
+            <!-- Tasto Olografico MattYbarA WebSite posizionato sotto la sezione social -->
+            <div class="pt-2">
+                <a href="https://mattybara.s.gy/zc8cwp" target="_blank" class="flex items-center justify-center gap-3 w-full py-4 px-6 text-base font-black tracking-wider uppercase rounded-2xl transition-all holographic-btn">
+                    🌐 MattYbarA WebSite ⚡
+                </a>
+            </div>
         </div>
 
         <div class="text-center pt-8 space-y-6">
